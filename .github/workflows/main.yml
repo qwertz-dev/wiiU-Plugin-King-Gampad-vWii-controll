@@ -1,20 +1,28 @@
-
-name: Build Plugin
+name: Build King Plugin
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     container: wiiuenv/devkitppc:latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Install WUPS
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install WUPS Tools
         run: |
-          # Wir nutzen dkp-pacman, das ist im Container fest eingebaut
+          # Wir nutzen dkp-pacman, um Error 127 und 100 zu vermeiden
           dkp-pacman -Syu --noconfirm wups-dev
-      - name: Build
-        run: make
-      - name: Upload
+
+      - name: Build Plugin
+        run: |
+          # Wir putzen einmal durch, falls Reste vom Error 1 da sind
+          make clean
+          make
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: King-Gamepad-Plugin
+          name: King-Gamepad-vWii-Plugin
+          # Wir suchen jetzt direkt im Hauptordner nach der .wps Datei
           path: "*.wps"
