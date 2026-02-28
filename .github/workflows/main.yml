@@ -8,13 +8,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install WUPS
         run: |
-          # Hier wird das fehlende Werkzeug installiert
-          apk update
-          apk add wups-dev
+          # Wir nutzen jetzt den richtigen Befehl für diesen Server
+          apt-get update
+          apt-get install -y wups-dev
       - name: Build
         run: make
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: King-Gamepad-Plugin
+          name: King-Gamepad-vWii-Plugin
           path: "*.wps"
