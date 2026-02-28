@@ -1,10 +1,12 @@
 #include <wups.h>
-#include <vpad/input.h>
+#include <coreinit/screen.h>
 
-/**
- * King GamePad vWii Controller
- * Das ultimative Plugin für vWii-Freiheit.
- */
+// Das hier ist wichtig für Aroma!
+WUPS_PLUGIN_NAME("King Gamepad vWii");
+WUPS_PLUGIN_DESCRIPTION("Controller Mod by King");
+WUPS_PLUGIN_VERSION("1.0");
+WUPS_PLUGIN_AUTHOR("King");
+WUPS_PLUGIN_LICENSE("GPL");
 
 WUPS_MUST_REPLACE(VPADRead, WUPS_LOADER_LIBRARY_VPAD, VPADRead);
 
