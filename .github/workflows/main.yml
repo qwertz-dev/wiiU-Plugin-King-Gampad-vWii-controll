@@ -6,14 +6,15 @@ jobs:
     container: wiiuenv/devkitppc:latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install WUPS
+      - name: Install Tools
         run: dkp-pacman -Syu --noconfirm wups-dev wut
       - name: Build
         run: |
+          # Das hier erzwingt einen sauberen Neustart
           make clean
           make
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: King-Gamepad-vWii
+          name: King-Gamepad-vWii-Plugin
           path: "*.wps"
