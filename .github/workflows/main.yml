@@ -1,3 +1,4 @@
+
 name: Build Plugin
 on: [push]
 jobs:
@@ -8,13 +9,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install WUPS
         run: |
-          # Wir nutzen jetzt den richtigen Befehl für diesen Server
-          apt-get update
-          apt-get install -y wups-dev
+          # Wir nutzen dkp-pacman, das ist im Container fest eingebaut
+          dkp-pacman -Syu --noconfirm wups-dev
       - name: Build
         run: make
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: King-Gamepad-vWii-Plugin
+          name: King-Gamepad-Plugin
           path: "*.wps"
