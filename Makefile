@@ -2,8 +2,8 @@ TARGET		:= King-Gamepad-vWii
 SOURCES		:= source
 INCLUDES	:= include
 
-# Diese Zeile löst den Error 1 in deinem Paket:
-LIBS		:= -lwups -lvpad -lcoreinit -lwut
+# Wir nutzen nur die Basis, damit der Linker nicht abbricht.
+LIBS		:= -lwups -lwut
 
 include $(WUT_ROOT)/share/wut_rules
 include $(DEVKITPRO)/wups/share/wups_rules
