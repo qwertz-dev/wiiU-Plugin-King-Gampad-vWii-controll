@@ -1,4 +1,4 @@
-name: Build King Gamepad Plugin
+name: Build King Plugin
 on: [push]
 jobs:
   build:
@@ -6,9 +6,8 @@ jobs:
     container: wiiuenv/devkitppc:latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Tools
-        run: |
-          dkp-pacman -Syu --noconfirm wups-dev wut
+      - name: Install WUPS
+        run: dkp-pacman -Syu --noconfirm wups-dev wut
       - name: Build
         run: |
           make clean
